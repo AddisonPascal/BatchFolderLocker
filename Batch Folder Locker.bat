@@ -38,13 +38,16 @@ echo set password=%passwordToLock%
 attrib +h +s "%appdata%\BFL\%folderID%\%folderNameLocked%"
 attrib +h +s "%appdata%\BFL\%folderID%\data.bat"
 attrib +h +s "%appdata%\BFL\%folderID%"
+md "C:\Users\%username%\Desktop\Batch Locked Folders"
 (
 @echo off
 echo set folderID=%folderID%
 echo set folderName=%folderNameLocked%
-)>"C:\Users\%username%\Desktop\%folderNameLocked%-Locked.blf"
+)>"C:\Users\%username%\Desktop\Batch Locked Folders\%folderNameLocked%-Locked.blf"
+echo "C:\Users\%username%\Desktop\Batch Locked Folders\%folderNameLocked%-Locked.blf" |clip
 cls
-echo Locked folder! Saved to desktop.
+echo Locked folder! Saved to Desktop\Batch Locked Folders.
+echo Link to locked folder saved to clipboard.
 echo Press any key to exit...
 pause>nul
 exit
