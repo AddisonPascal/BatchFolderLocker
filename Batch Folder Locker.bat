@@ -42,9 +42,9 @@ attrib +h +s "%appdata%\BFL\%folderID%"
 @echo off
 echo set folderID=%folderID%
 echo set folderName=%folderNameLocked%
-)>"%~dp0\%folderNameLocked%-Locked.blf"
+)>"C:\Users\%username%\Desktop\%folderNameLocked%-Locked.blf"
 cls
-echo Locked folder!
+echo Locked folder! Saved to desktop.
 echo Press any key to exit...
 pause>nul
 exit
