@@ -52,7 +52,7 @@ del "%appdata%\BFL\tmp.bat"
 copy %openingFolderPath% "%appdata%\BFL\tmp.bat"
 call "%appdata%\BFL\tmp.bat"
 del "%appdata%\BFL\tmp.bat"
-if not exist "%appdata%\BFL\%folderID%" goto notexist
+if not exist "%appdata%\BFL\%folderID%*" goto notexist
 title Opening Folder %folderName%
 cls
 echo Opening Folder %folderName%. 
