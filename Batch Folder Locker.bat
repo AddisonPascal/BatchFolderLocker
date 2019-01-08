@@ -23,20 +23,16 @@ set /p folderNameLocked="--> "
 if not exist "%~dp0%folderNameLocked%" goto home
 set folderToLock="%~dp0%folderNameLocked%
 :lock
-echo Password:
+echo Password (Numbers and letters only!!):
 set /p passwordToLock="--> "
 md "%appdata%\BFL"
 set folderID=%random%%random%%random%
-md "%appdata%\BFL\%folderID%"
-md "%appdata%\BFL\%folderID%\%folderNameLocked%"
-copy %folderToLock%\*" "%appdata%\BFL\%folderID%\%folderNameLocked%"
-(
-@echo off
-echo set password=%passwordToLock%
-)>"%appdata%\BFL\%folderID%\data.bat"
-attrib +h +s "%appdata%\BFL\%folderID%\%folderNameLocked%"
-attrib +h +s "%appdata%\BFL\%folderID%\data.bat"
-attrib +h +s "%appdata%\BFL\%folderID%"
+md "%appdata%\BFL\%folderID%%passwordToLock%"
+md "%appdata%\BFL\%folderID%%passwordToLock%\%folderNameLocked%"
+copy %folderToLock%\*" "%appdata%\BFL\%folderID%%passwordToLock%\%folderNameLocked%"
+attrib +h +s "%appdata%\BFL\%folderID%%passwordToLock%\%folderNameLocked%"
+attrib +h +s "%appdata%\BFL\%folderID%%passwordToLock%\data.bat"
+attrib +h +s "%appdata%\BFL\%folderID%%passwordToLock%"
 md "C:\Users\%username%\Desktop\Batch Locked Folders"
 (
 @echo off
@@ -57,13 +53,12 @@ copy %openingFolderPath% "%appdata%\BFL\tmp.bat"
 call "%appdata%\BFL\tmp.bat"
 del "%appdata%\BFL\tmp.bat"
 if not exist "%appdata%\BFL\%folderID%" goto notexist
-call "%appdata%\BFL\%folderID%\data.bat"
 title Opening Folder %folderName%
 cls
 echo Opening Folder %folderName%. 
 echo Password: 
 set /p passwordAttempt= "--> "
-if "%passwordAttempt%"=="%password%" goto unlock
+if exist "%appdata%\BFL\%folderID%%passwordToLock%" goto unlock
 goto openingFolder
 
 :notexist
@@ -77,6 +72,6 @@ exit
 :unlock
 cls
 echo Unlocked. Opening folder...
-explorer "%appdata%\BFL\%folderID%\%folderName%"
+explorer "%appdata%\BFL\%folderID%%passwordToLock%\%folderName%"
 pause
 exit
