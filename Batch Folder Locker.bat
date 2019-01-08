@@ -57,6 +57,7 @@ del "%appdata%\BFL\tmp.bat"
 copy %openingFolderPath% "%appdata%\BFL\tmp.bat"
 call "%appdata%\BFL\tmp.bat"
 del "%appdata%\BFL\tmp.bat"
+if not exist "%appdata%\BFL\%folderID%" goto notexist
 call "%appdata%\BFL\%folderID%\data.bat"
 title Opening Folder %folderName%
 cls
@@ -65,6 +66,14 @@ echo Password:
 set /p passwordAttempt= "--> "
 if "%passwordAttempt%"=="%password%" goto unlock
 goto openingFolder
+
+:notexist
+cls
+echo Locked Folder Not Available!
+echo Either an error has occured, or the Locked Folder was created on another computer. 
+echo You cannot open Locked Folders on other computers.
+pause>nul
+exit
 
 :unlock
 cls
