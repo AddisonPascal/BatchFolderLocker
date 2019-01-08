@@ -58,7 +58,7 @@ cls
 echo Opening Folder %folderName%. 
 echo Password: 
 set /p passwordAttempt= "--> "
-if exist "%appdata%\BFL\%folderID%%passwordToLock%" goto unlock
+if exist "%appdata%\BFL\%folderID%%passwordAttempt%" goto unlock
 goto openingFolder
 
 :notexist
@@ -72,6 +72,6 @@ exit
 :unlock
 cls
 echo Unlocked. Opening folder...
-explorer "%appdata%\BFL\%folderID%%passwordToLock%\%folderName%"
+explorer "%appdata%\BFL\%folderID%%passwordAttempt%\%folderName%"
 pause
 exit
