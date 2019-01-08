@@ -1,5 +1,5 @@
 @echo off
-rem Batch Folder Locker by Addison Djatschenko (v0.3)
+rem Batch Folder Locker by Addison Djatschenko (v0.4)
 title Batch Folder Locker
 set isOpeningFolder=.%1
 if %isOpeningFolder%==. (
